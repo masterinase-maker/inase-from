@@ -1,0 +1,25 @@
+:root{
+  --brand:#e21e2b; --brand-dark:#a01018; --ink:#222; --paper:#fff; --line:#e9e9e9; --muted:#6b6b6b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Noto Sans JP',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:var(--paper);color:var(--ink)}
+.hero--inase{min-height:38vh;border-bottom:8px solid var(--brand);display:grid;place-items:center}
+.hero__overlay{text-align:center;padding:36px 16px 28px}
+.hero__logo{height:88px;object-fit:contain;margin:0 auto 10px;display:block}
+.hero__subtitle{color:var(--muted);margin:4px 0 0}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 64px}
+.panel{border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.panel--inase{border-top:6px solid var(--brand)}
+.panel__title{margin:0 0 6px;font-size:22px;font-weight:700}
+.panel__note{margin:0 0 16px;color:var(--muted)}
+label{display:block;font-size:14px;margin:14px 0 6px}
+.req::after{content:" *";color:var(--brand)}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);font-size:16px;background:#fff}
+textarea{min-height:120px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row .field{flex:1 1 240px}
+.radios{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.btn{margin-top:18px;width:100%;padding:14px;border:0;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer}
+.btn--inase{background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(226,30,43,.3)}
+.msg{margin-top:12px;min-height:1.4em;color:var(--brand-dark);font-weight:600}
+.footer{text-align:center;color:#777;padding:24px 12px 48px}

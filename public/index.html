@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>INASE Charity Fight エントリー</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="hero hero--inase">
+    <div class="hero__overlay">
+      <!-- ロゴ画像 -->
+      <img src="./images/IMG_8284.jpg" alt="INASE Charity Fight" class="hero__logo" />
+      <h1 class="hero__title">INASE Charity Fight</h1>
+      <p class="hero__subtitle">Entry Form</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel panel--inase">
+      <h2 class="panel__title">エントリーフォーム</h2>
+      <p class="panel__note">送信内容はGoogleスプレッドシートに保存されます。</p>
+
+      <form id="entryForm" novalidate>
+        <!-- honeypot（任意） -->
+        <input type="text" name="hp_secret" autocomplete="off" tabindex="-1" aria-hidden="true"
+                style="position:absolute;left:-9999px;height:0;width:0;opacity:0;pointer-events:none;">
+
+        <div class="row">
+          <div class="field">
+            <label class="req">名前（名）</label>
+            <input name="first_name" required>
+          </div>
+          <div class="field">
+            <label class="req">名前（姓）</label>
+            <input name="last_name" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label class="req">生年月日</label>
+            <input type="date" name="birthdate" required>
+          </div>
+          <div class="field">
+            <label class="req">メール</label>
+            <input type="email" name="email" required>
+          </div>
+        </div>
+
+        <label class="req">住所</label>
+        <input name="address" required>
+
+        <label class="req">所属（無い場合は「無し」）</label>
+        <input name="affiliation" required>
+
+        <div class="row">
+          <div class="field">
+            <label class="req">身長（cm）</label>
+            <input type="number" name="height_cm" required>
+          </div>
+          <div class="field">
+            <label class="req">現在体重（kg）</label>
+            <input type="number" name="weight_now_kg" required>
+          </div>
+        </div>
+
+        <label class="req">試合体重</label>
+        <div class="radios">
+          <label><input type="radio" name="weight_class" value="50-55" required>50kg-55kg</label>
+          <label><input type="radio" name="weight_class" value="55-60">55kg-60kg</label>
+          <label><input type="radio" name="weight_class" value="60-65">60kg-65kg</label>
+          <label><input type="radio" name="weight_class" value="65-70">65kg-70kg</label>
+          <label><input type="radio" name="weight_class" value="70-75">70kg-75kg</label>
+          <label><input type="radio" name="weight_class" value="75-80">75kg-80kg</label>
+          <label><input type="radio" name="weight_class" value="80+">80kg以上</label>
+        </div>
+
+        <label class="req">希望</label>
+        <div class="radios">
+          <label><input type="radio" name="discipline" value="Kickboxing" required>キックボクシング</label>
+          <label><input type="radio" name="discipline" value="MMA">MMA</label>
+          <label><input type="radio" name="discipline" value="OpenFingerKick">オープンフィンガーキック</label>
+        </div>
+
+        <label class="req">電話番号</label>
+        <input name="phone" required>
+
+        <label class="req">LINE ID</label>
+        <input name="line_id" required>
+
+        <label>ご質問など</label>
+        <textarea name="questions" placeholder="連絡事項があればご記入ください"></textarea>
+
+        <button type="submit" class="btn btn--inase">送信</button>
+        <div id="msg" class="msg" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 INASE Charity Fight</small>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
