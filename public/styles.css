@@ -23,3 +23,40 @@ textarea{min-height:120px}
 .btn--inase{background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(226,30,43,.3)}
 .msg{margin-top:12px;min-height:1.4em;color:var(--brand-dark);font-weight:600}
 .footer{text-align:center;color:#777;padding:24px 12px 48px}
+
+/*
+*
+*体重周りのcss
+*
+*/
+.weight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .6rem;
+}
+@media (min-width: 640px) {
+  .weight-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.weight-grid input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.weight-grid label {
+  display: block;
+  text-align: center;
+  padding: .75rem .5rem;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  background: #fff;
+}
+
+.weight-grid input[type="radio"]:checked + label {
+  border-color: #d21b22;
+  box-shadow: 0 0 0 3px rgba(210,27,34,.15);
+  font-weight: 600;
+}

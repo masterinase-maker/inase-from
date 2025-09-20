@@ -73,16 +73,37 @@
           </div>
         </div>
 
-        <label class="req">試合体重</label>
-        <div class="radios">
-          <label><input type="radio" name="weight_class" value="50-55" required>50kg-55kg</label>
-          <label><input type="radio" name="weight_class" value="55-60">55kg-60kg</label>
-          <label><input type="radio" name="weight_class" value="60-65">60kg-65kg</label>
-          <label><input type="radio" name="weight_class" value="65-70">65kg-70kg</label>
-          <label><input type="radio" name="weight_class" value="70-75">70kg-75kg</label>
-          <label><input type="radio" name="weight_class" value="75-80">75kg-80kg</label>
-          <label><input type="radio" name="weight_class" value="80+">80kg以上</label>
-        </div>
+        <fieldset class="field">
+          <legend class="req">試合体重（基準kg）</legend>
+        
+          <div class="weight-grid" role="radiogroup" aria-label="試合体重（基準kg）">
+            <input type="radio" name="weight_class" id="w55" value="55" required>
+            <label for="w55">55kg</label>
+        
+            <input type="radio" name="weight_class" id="w60" value="60">
+            <label for="w60">60kg</label>
+        
+            <input type="radio" name="weight_class" id="w65" value="65">
+            <label for="w65">65kg</label>
+        
+            <input type="radio" name="weight_class" id="w70" value="70">
+            <label for="w70">70kg</label>
+        
+            <input type="radio" name="weight_class" id="w75" value="75">
+            <label for="w75">75kg</label>
+        
+            <input type="radio" name="weight_class" id="w80" value="80">
+            <label for="w80">80kg</label>
+        
+            <input type="radio" name="weight_class" id="w85" value="85">
+            <label for="w85">85kg</label>
+        
+            <input type="radio" name="weight_class" id="wOpen" value="open">
+            <label for="wOpen">無差別</label>
+          </div>
+        
+          <p class="help">※選んだ<strong>基準体重「以下」</strong>なら計量クリアです。</p>
+        </fieldset>
 
         <label class="req">希望</label>
         <div class="radios">
