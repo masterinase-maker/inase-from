@@ -29,13 +29,20 @@
 
         <div class="row">
           <div class="field">
-            <label class="req">名前（名）</label>
-            <input name="first_name" required>
+            <label class="req">名前</label>
+            <input name="first_name" placeholder="例) イナセ 太郎" required>
           </div>
           <div class="field">
-            <label class="req">名前（姓）</label>
-            <input name="last_name" required>
+            <label class="req">フリガナ</label>
+            <input name="last_name" placeholder="例）イナセ タロウ"
+            pattern="[\u30A0-\u30FF\u3000ー\s]+"
+            title="カタカナで入力してください" required>
           </div>
+        </div>
+
+        <div>
+          <label class="req">リングネーム (任意)</label>
+          <input name="ring_name" placeholder="">
         </div>
 
         <div class="row">
