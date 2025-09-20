@@ -60,3 +60,35 @@ textarea{min-height:120px}
   box-shadow: 0 0 0 3px rgba(210,27,34,.15);
   font-weight: 600;
 }
+
+/* ルール周りの余白 */
+.rules-link { margin: 12px 0 8px; }
+
+/* ← これで“チェックボックス＋文言”を横並び&中央揃えに */
+.agree-check {
+  display: inline-flex;          /* インライン要素として扱えて折り返しも自然 */
+  align-items: center;           /* 縦方向の中央揃え（iPhoneでもズレない） */
+  gap: .6rem;                    /* チェックと文字の間隔 */
+  line-height: 1.5;              /* 文字の行間（見やすさ） */
+  cursor: pointer;               /* クリック可能感 */
+}
+
+/* 端末ごとの差をなくすためにサイズを指定（タップしやすい大きさ） */
+.agree-check input[type="checkbox"]{
+  width: 1.25rem;                /* 約20px */
+  height: 1.25rem;
+  margin: 0;
+  flex: 0 0 auto;                /* 伸縮させない */
+  accent-color: #d21b22;         /* iOS/Chromeでチェック色をブランドカラーに */
+}
+
+/* “親指向け”に、タッチ端末では少しだけ大きく */
+@media (pointer: coarse){
+  .agree-check input[type="checkbox"]{
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+/* もし右側に謎の点(・)が出る場合の保険（リストのマーカーを無効化） */
+.rules-box ul, .rules-box li { list-style: none; margin: 0; padding: 0; }
