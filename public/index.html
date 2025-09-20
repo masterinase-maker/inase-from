@@ -56,6 +56,12 @@
           </div>
         </div>
 
+        <label class="req">電話番号</label>
+        <input name="phone" required>
+
+        <label class="req">LINE ID</label>
+        <input name="line_id" required>
+
         <label class="req">住所</label>
         <input name="address" required>
 
@@ -105,18 +111,16 @@
           <p class="help">※選んだ<strong>基準体重「以下」</strong>なら計量クリアです。</p>
         </fieldset>
 
-        <label class="req">希望</label>
-        <div class="radios">
-          <label><input type="radio" name="discipline" value="Kickboxing" required>キックボクシング</label>
-          <label><input type="radio" name="discipline" value="MMA">MMA</label>
-          <label><input type="radio" name="discipline" value="OpenFingerKick">オープンフィンガーキック</label>
-        </div>
-
-        <label class="req">電話番号</label>
-        <input name="phone" required>
-
-        <label class="req">LINE ID</label>
-        <input name="line_id" required>
+    <!-- ルール同意部分 -->
+    <div class="rules-box">
+      <p>
+        <a href="rules/INASE_rules.pdf" target="_blank">📄 INASE公式ルールPDFを読む</a>
+      </p>
+      <label>
+        <input type="checkbox" name="agree_rules" required />
+        上記ルールに同意します
+      </label>
+    </div>
 
         <label>ご質問など</label>
         <textarea name="questions" placeholder="連絡事項があればご記入ください"></textarea>

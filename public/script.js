@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 必須チェック（必要に応じて調整）
     const required = ['full_name','furigana','birthdate','address','affiliation',
-                      'height_cm','weight_now_kg','weight_class','discipline','phone','line_id'];
+                      'height_cm','weight_now_kg','weight_class','discipline','phone','line_id','agree_rules'];
     for (const k of required) { if (!data[k]) { msg.textContent = '未入力の必須項目があります。'; return; } }
 
     try {
