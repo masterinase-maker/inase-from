@@ -92,3 +92,14 @@ textarea{min-height:120px}
 
 /* もし右側に謎の点(・)が出る場合の保険（リストのマーカーを無効化） */
 .rules-box ul, .rules-box li { list-style: none; margin: 0; padding: 0; }
+
+/* 必須だけにアスタリスクを出す */
+label.required::after {
+  content: " *";
+  color: red;
+}
+
+/* デフォルトではアスタリスクを消す */
+label::after {
+  content: "";
+}

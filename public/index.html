@@ -27,11 +27,11 @@
 
         <div class="row">
           <div class="field">
-            <label class="req">名前</label>
+            <label class="req" class="required">名前</label>
             <input name="full_name" placeholder="例) イナセ 太郎" required>
           </div>
           <div class="field">
-            <label class="req">フリガナ</label>
+            <label class="req" class="required">フリガナ</label>
             <input name="furigana" placeholder="例）イナセ タロウ"
             pattern="[\u30A0-\u30FF\u3000ー\s]+"
             title="カタカナで入力してください" required>
@@ -45,7 +45,7 @@
 
         <div class="row">
           <div class="field">
-            <label class="req">生年月日</label>
+            <label class="req" class="required">生年月日</label>
             <input type="date" name="birthdate" required>
           </div>
           <div class="field">
@@ -54,25 +54,25 @@
           </div>
         </div>
 
-        <label class="req">電話番号</label>
+        <label class="req" class="required">電話番号</label>
         <input name="phone" required>
 
-        <label class="req">LINE ID</label>
+        <label class="req" class="required">LINE ID</label>
         <input name="line_id" required>
 
-        <label class="req">住所</label>
+        <label class="req" class="required">住所</label>
         <input name="address" required>
 
-        <label class="req">所属（無い場合は「無し」）</label>
+        <label class="req" class="required">所属（無い場合は「無し」）</label>
         <input name="affiliation" required>
 
         <div class="row">
           <div class="field">
-            <label class="req">身長（cm）</label>
+            <label class="req" class="required">身長（cm）</label>
             <input type="number" name="height_cm" required>
           </div>
           <div class="field">
-            <label class="req">現在体重（kg）</label>
+            <label class="req" class="required">現在体重（kg）</label>
             <input type="number" name="weight_now_kg" required>
           </div>
         </div>
