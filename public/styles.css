@@ -94,7 +94,7 @@ textarea{min-height:120px}
 .rules-box ul, .rules-box li { list-style: none; margin: 0; padding: 0; }
 
 /* まず全ラベルのアスタリスクを強制的に消す */
-label::after { content: "" !important; }
+/* label::after { content: "" !important; } */
 
 /* 必須だけに * を付ける（色はサイト赤に合わせて） */
 label.req::after {
