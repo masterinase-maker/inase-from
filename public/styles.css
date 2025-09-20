@@ -105,3 +105,26 @@ label.req::after {
 
 /* レイアウトのズレ防止（任意） */
 label { position: relative; }
+
+
+/* 大会趣旨ボックス */
+.statement-box {
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  background: #fafafa;
+  padding: 14px 16px;
+  margin: 12px 0;
+}
+
+.statement-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #d21b22;   /* ブランド赤 */
+  margin: 0 0 6px;
+}
+
+.statement-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
