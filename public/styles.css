@@ -93,13 +93,15 @@ textarea{min-height:120px}
 /* もし右側に謎の点(・)が出る場合の保険（リストのマーカーを無効化） */
 .rules-box ul, .rules-box li { list-style: none; margin: 0; padding: 0; }
 
-/* 必須だけにアスタリスクを出す */
-label.required::after {
+/* まず全ラベルのアスタリスクを強制的に消す */
+label::after { content: "" !important; }
+
+/* 必須だけに * を付ける（色はサイト赤に合わせて） */
+label.req::after {
   content: " *";
-  color: red;
+  color: #d21b22;
+  margin-left: .25rem;
 }
 
-/* デフォルトではアスタリスクを消す */
-label::after {
-  content: "";
-}
+/* レイアウトのズレ防止（任意） */
+label { position: relative; }
