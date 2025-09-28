@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
     data.agree_statement = agreedStmt  ? 'true' : '';
 
     try {
+      // デバッグ：送信前のpayloadを確認
+console.log("送信payload before fetch", data);
+
       const res  = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
