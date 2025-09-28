@@ -13,14 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 既存：const data = Object.fromEntries(new FormData(form).entries());
 
-    // 画像をBase64に
+    // --- ここを追加：画像をBase64に変換して payload に含める ---
     try {
-      const photoPayload = await fileToBase64Payload(form.querySelector('input[name="photo_file"]'));
+      const photoPayload = await fileToBase64Payload(
+        form.querySelector('input[name="photo_file"]')
+      );
       if (photoPayload) Object.assign(data, photoPayload);
     } catch (e) {
       msg.textContent = '画像エラー：' + e.message;
       return;
     }
+  // --- 追加ここまで ---
 
 
     // ---- honeypot
@@ -65,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreeStmtEl  = form.querySelector('input[name="agree_statement"]');
     const agreedStmt   = !!(agreeStmtEl && agreeStmtEl.checked);
     if (!agreedStmt) missing.push('大会趣旨への同意');
+
+    // 写真必須チェック（追加）
+    if (!data.photo_base64) {
+      missing.push('選手写真');
+    }
 
     if (missing.length) {
       msg.textContent = `未入力の必須項目：${missing.join('、')}`;
