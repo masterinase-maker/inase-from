@@ -67,19 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
       // ['line_id','LINE ID']
       // email は任意
     ];
-    // F/W/L を data から取る
     // 数値に正規化
     const F = Math.max(0, parseInt(data.fights_total, 10) || 0);
     const W = Math.max(0, parseInt(data.wins, 10) || 0);
     const L = Math.max(0, parseInt(data.losses, 10) || 0);
-    // 経験年数（小数許可）
+
+    // 経験年数は小数OK
     const Y = Math.max(0, parseFloat(data.exp_years) || 0);
-    data.exp_years = String(Y);
-    ddata.exp_years   = String(Y);
+    data.exp_years   = String(Y);
     data.fights_total = String(Math.max(F, W + L));
-    data.wins        = String(W);
-    data.losses      = String(L);
-    // スプレッドシート用の表示文字列（1列）
+    data.wins         = String(W);
+    data.losses       = String(L);
+    // スプレッドシート用 表示文字列（1列）
     data.record_text = `${data.fights_total}戦 ${data.wins}勝 ${data.losses}敗`;
     // テキスト系
     for (const [key,label] of needText) {
