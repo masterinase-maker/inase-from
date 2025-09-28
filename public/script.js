@@ -11,6 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const data = Object.fromEntries(new FormData(form).entries());
 
+    // 既存：const data = Object.fromEntries(new FormData(form).entries());
+
+    // 画像をBase64に
+    try {
+      const photoPayload = await fileToBase64Payload(form.querySelector('input[name="photo_file"]'));
+      if (photoPayload) Object.assign(data, photoPayload);
+    } catch (e) {
+      msg.textContent = '画像エラー：' + e.message;
+      return;
+    }
+
+
     // ---- honeypot
     if (data.hp_secret && data.hp_secret.trim() !== '') {
       msg.textContent = '送信完了しました。ありがとうございます。';
@@ -97,6 +109,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// 送信直前の処理の直前に追加
+async function fileToBase64Payload(inputEl) {
+  const f = inputEl?.files?.[0];
+  if (!f) return null;
+
+  // サイズ制限（例: 2MB）
+  const MAX = 2 * 1024 * 1024;
+  if (f.size > MAX) {
+    throw new Error('画像が大きすぎます（2MB以下にしてください）');
+  }
+
+  // Base64化
+  const dataUrl = await new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onload = () => resolve(fr.result);
+    fr.onerror = reject;
+    fr.readAsDataURL(f);
+  });
+
+  // "data:image/jpeg;base64,XXXX" → {mime, name, base64}
+  const m = String(dataUrl).match(/^data:(.*?);base64,(.*)$/);
+  if (!m) return null;
+
+  return {
+    photo_name: f.name,
+    photo_type: m[1],      // 例: image/jpeg
+    photo_base64: m[2],    // 純Base64
+  };
+}
 
 
 // // Netlify Functions 経由
