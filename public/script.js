@@ -57,12 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
       ['birthdate','生年月日'],
       ['address','住所'],
       ['affiliation','所属'],
+      ['exp_years','経験年数（年）'],   // ★追加
+      ['fights_total','総試合数'],       // ★追加
+      ['wins','勝ち'],                   // ★追加
+      ['losses','負け'],                 // ★追加
       ['height_cm','身長'],
       ['weight_now_kg','現在体重'],
       ['phone','電話番号'],
-      ['line_id','LINE ID']
+      // ['line_id','LINE ID']
       // email は任意
     ];
+    data.record_text = `${F}戦 ${W}勝 ${L}敗`;
     // テキスト系
     for (const [key,label] of needText) {
       if (!data[key] || String(data[key]).trim() === '') missing.push(label);
