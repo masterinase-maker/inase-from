@@ -74,10 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 経験年数は小数OK
     const Y = Math.max(0, parseFloat(data.exp_years) || 0);
-    data.exp_years   = String(Y);
-    data.fights_total = String(Math.max(F, W + L));
-    data.wins         = String(W);
-    data.losses       = String(L);
+    data.exp_years    = String(Y);               // ← これだけでOK
+    data.fights_total = String(Math.max(F, W+L));
     // スプレッドシート用 表示文字列（1列）
     data.record_text = `${data.fights_total}戦 ${data.wins}勝 ${data.losses}敗`;
     // テキスト系
