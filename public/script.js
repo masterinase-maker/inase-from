@@ -9,11 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     msg.textContent = '送信中…';
 
-    // const data = Object.fromEntries(new FormData(form).entries());
-    // 既存：const data = Object.fromEntries(new FormData(form).entries());
-    const fd = new FormData(form); // ↑を変更して新しく変更
+  //   // const data = Object.fromEntries(new FormData(form).entries());
+  //   // 既存：const data = Object.fromEntries(new FormData(form).entries());
+  //   const fd = new FormData(form); // ↑を変更して新しく変更
 
-    // --- ここを追加：画像をBase64に変換して payload に含める ---
+  //   // --- ここを追加：画像をBase64に変換して payload に含める ---
+  //   try {
+  //     const photoPayload = await fileToBase64Payload(
+  //       form.querySelector('input[name="photo_file"]')
+  //     );
+  //     if (photoPayload) Object.assign(data, photoPayload);
+  //   } catch (e) {
+  //     msg.textContent = '画像エラー：' + e.message;
+  //     return;
+  //   }
+  // // --- 追加ここまで ---
+
+    // フォーム値 → FormData → プレーンオブジェクト
+    const fd   = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
+    // 画像をBase64に変換して data に載せる
     try {
       const photoPayload = await fileToBase64Payload(
         form.querySelector('input[name="photo_file"]')
@@ -23,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       msg.textContent = '画像エラー：' + e.message;
       return;
     }
-  // --- 追加ここまで ---
 
 
     // ---- honeypot
@@ -69,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreedStmt   = !!(agreeStmtEl && agreeStmtEl.checked);
     if (!agreedStmt) missing.push('大会趣旨への同意');
 
+    // 画像必須
+    if (!data.photo_base64) {
+      missing.push('選手写真')
+    }
+
     if (missing.length) {
       msg.textContent = `未入力の必須項目：${missing.join('、')}`;
 
@@ -97,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res  = await fetch(ENDPOINT, {
         method: 'POST',
-        // headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
       const json = await res.json();
@@ -112,6 +132,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// 画像処理のため、新しく追加
+// 画像ファイルを Base64 へ。大きい画像はリサイズ＆圧縮して 10MB未満に収める
+async function fileToBase64Payload(inputEl) {
+  const f = inputEl?.files?.[0];
+  if (!f) return null;
+
+  // 1) 4MB超なら簡易圧縮（JPEG化・長辺1200px）
+  let blob = f;
+  if (f.size > 4 * 1024 * 1024) {
+    blob = await downscaleImage(f, { maxSize: 1200, quality: 0.85 });
+  }
+
+  // 2) 最終サイズが10MB以上は拒否（Netlify Functionsの制限のため）
+  if (blob.size > 10 * 1024 * 1024) {
+    throw new Error('画像が大きすぎます（10MB未満にしてください）');
+  }
+
+  // 3) Base64化
+  const dataUrl = await new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onload = () => resolve(fr.result);
+    fr.onerror = () => reject(new Error('画像の読み込みに失敗しました'));
+    fr.readAsDataURL(blob);
+  });
+
+  const m = String(dataUrl).match(/^data:(.*?);base64,(.*)$/);
+  if (!m) throw new Error('画像の変換に失敗しました');
+
+  // 拡張子は元ファイルを尊重（ただし圧縮時は jpeg）
+  const ext  = blob.type.includes('jpeg') ? 'jpg'
+            : blob.type.split('/')[1] || 'bin';
+  const name = (f.name || 'photo').replace(/\.[^.]+$/, '') + '.' + ext;
+
+  return {
+    photo_name: name,        // 例: player.jpg
+    photo_type: blob.type,   // 例: image/jpeg
+    photo_base64: m[2],      // Base64本体
+  };
+}
+
+// 画像を <canvas> で縮小＆JPEG圧縮
+function downscaleImage(file, { maxSize = 1200, quality = 0.85 } = {}) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const { width, height } = img;
+      const scale = Math.min(1, maxSize / Math.max(width, height));
+      const w = Math.round(width * scale);
+      const h = Math.round(height * scale);
+
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+
+      canvas.toBlob(
+        (b) => (b ? resolve(b) : reject(new Error('画像の圧縮に失敗しました'))),
+        'image/jpeg',
+        quality
+      );
+    };
+    img.onerror = () => reject(new Error('画像の読み込みに失敗しました'));
+    img.src = URL.createObjectURL(file);
+  });
+}
 
 
 // // Netlify Functions 経由
