@@ -67,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // ['line_id','LINE ID']
       // email は任意
     ];
+    // F/W/L を data から取る
+    const F = data.fights_total || 0;
+    const W = data.wins || 0;
+    const L = data.losses || 0;
     data.record_text = `${F}戦 ${W}勝 ${L}敗`;
     // テキスト系
     for (const [key,label] of needText) {
