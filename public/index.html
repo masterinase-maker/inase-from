@@ -85,43 +85,52 @@
           <div class="field">
             <label class="req">戦歴</label>
             <div class="record-grid">
-              <select name="fights_total" required>
-                <option value="">選択</option>
-                <option>0</option><option>1</option><option>2</option><option>3</option>
-                <option>4</option><option>5</option><option>6</option><option>7</option>
-                <option>8</option><option>9</option><option>10</option>
-                <option>11</option><option>12</option><option>13</option><option>14</option>
-                <option>15</option><option>16</option><option>17</option><option>18</option>
-                <option>19</option><option>20</option><option>21</option><option>22</option>
-                <option>23</option><option>24</option><option>25</option><option>26</option>
-                <option>27</option><option>28</option><option>29</option><option>30〜</option>
-              </select><span>戦</span>
-        
-              <select name="wins" required>
-                <option value="">選択</option>
-                <option>0</option><option>1</option><option>2</option><option>3</option>
-                <option>4</option><option>5</option><option>6</option><option>7</option>
-                <option>8</option><option>9</option><option>10</option>
-                <option>11</option><option>12</option><option>13</option><option>14</option>
-                <option>15</option><option>16</option><option>17</option><option>18</option>
-                <option>19</option><option>20</option><option>21</option><option>22</option>
-                <option>23</option><option>24</option><option>25</option><option>26</option>
-                <option>27</option><option>28</option><option>29</option><option>30〜</option>
-              </select><span>勝</span>
-        
-              <select name="losses" required>
-                <option value="">選択</option>
-                <option>0</option><option>1</option><option>2</option><option>3</option>
-                <option>4</option><option>5</option><option>6</option><option>7</option>
-                <option>8</option><option>9</option><option>10</option>
-                <option>11</option><option>12</option><option>13</option><option>14</option>
-                <option>15</option><option>16</option><option>17</option><option>18</option>
-                <option>19</option><option>20</option><option>21</option><option>22</option>
-                <option>23</option><option>24</option><option>25</option><option>26</option>
-                <option>27</option><option>28</option><option>29</option><option>30〜</option>
-              </select><span>敗</span>
+              <div class="record-item">
+                <label for="fights_total">総試合</label>
+                <select id="fights_total" name="fights_total" required>
+                  <option value="" hidden>選択</option>
+                  <option>0</option><option>1</option><option>2</option><option>3</option>
+                  <option>4</option><option>5</option><option>6</option><option>7</option>
+                  <option>8</option><option>9</option><option>10</option>
+                  <option>11</option><option>12</option><option>13</option><option>14</option>
+                  <option>15</option><option>16</option><option>17</option><option>18</option>
+                  <option>19</option><option>20</option><option>21</option><option>22</option>
+                  <option>23</option><option>24</option><option>25</option><option>26</option>
+                  <option>27</option><option>28</option><option>29</option><option>30〜</option>
+                </select>
+              </div>
+          
+              <div class="record-item">
+                <label for="wins">勝</label>
+                <select id="wins" name="wins" required>
+                  <option value="" hidden>選択</option>
+                  <option>0</option><option>1</option><option>2</option><option>3</option>
+                  <option>4</option><option>5</option><option>6</option><option>7</option>
+                  <option>8</option><option>9</option><option>10</option>
+                  <option>11</option><option>12</option><option>13</option><option>14</option>
+                  <option>15</option><option>16</option><option>17</option><option>18</option>
+                  <option>19</option><option>20</option><option>21</option><option>22</option>
+                  <option>23</option><option>24</option><option>25</option><option>26</option>
+                  <option>27</option><option>28</option><option>29</option><option>30〜</option>
+                </select>
+              </div>
+          
+              <div class="record-item">
+                <label for="losses">敗</label>
+                <select id="losses" name="losses" required>
+                  <option value="" hidden>選択</option>
+                  <option>0</option><option>1</option><option>2</option><option>3</option>
+                  <option>4</option><option>5</option><option>6</option><option>7</option>
+                  <option>8</option><option>9</option><option>10</option>
+                  <option>11</option><option>12</option><option>13</option><option>14</option>
+                  <option>15</option><option>16</option><option>17</option><option>18</option>
+                  <option>19</option><option>20</option><option>21</option><option>22</option>
+                  <option>23</option><option>24</option><option>25</option><option>26</option>
+                  <option>27</option><option>28</option><option>29</option><option>30〜</option>
+                </select>
+              </div>
             </div>
-            <small class="help">※戦歴が無い方は全て0としてください。</small>
+            <p class="help">※戦歴が無い方はすべて「0」を選択してください。</p>
           </div>
         </div>
 

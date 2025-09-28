@@ -159,3 +159,27 @@ select{
     grid-column: 1 / span 2; /* 3つ目を次の行に回す */
   }
 }
+
+/* 戦歴のレイアウト */
+.record-grid{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;       /* デフォルト：縦1列（スマホ） */
+}
+@media (min-width: 640px){          /* タブレット以上で3列 */
+  .record-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+.record-item label{
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 4px;
+  display: block;
+}
+.record-item select{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 16px;
+  background: #fff;
+}
