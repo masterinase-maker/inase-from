@@ -71,12 +71,19 @@ export const handler = async (event) => {
     console.log('POST to GAS:', endpoint);
     console.log('payload keys:', Object.keys(data));
 
-    const params = new URLSearchParams(data);
+    // const params = new URLSearchParams(data);
+    // const resp = await fetch(endpoint, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    //   body: params
+    // });
+    // ↑前ので↓追加：JSONそのまま中継（Base64を壊さない）
     const resp = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: params
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
+    console.log('photo_base64 length:', (data.photo_base64 || '').length);
 
     const text = await resp.text();
     let json;
