@@ -183,3 +183,16 @@ select{
   font-size: 16px;
   background: #fff;
 }
+
+
+/* 小さめの数値ボックス（最大3桁） */
+.num-3ch { width: 6ch; text-align: right; }
+
+/* 戦歴を横一列に。狭い画面では自動で折り返し */
+.record-inline {
+  display: flex; align-items: center; gap: .4rem; flex-wrap: wrap;
+}
+.record-inline .unit { color: var(--muted); }
+
+/* 行の密度を少し高める */
+.row.compact { gap: 10px; }

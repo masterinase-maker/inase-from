@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
       ['birthdate','生年月日'],
       ['address','住所'],
       ['affiliation','所属'],
-      ['exp_years','経験年数（年）'],   // ★追加
-      ['fights_total','総試合数'],       // ★追加
-      ['wins','勝ち'],                   // ★追加
-      ['losses','負け'],                 // ★追加
+      ['exp_years','経験年数（年）'],   // ← 数値入力
+      ['fights_total','総試合数'],       // ← 数値入力
+      ['wins','勝'],                     // ← 数値入力
+      ['losses','敗'],                   // ← 数値入力
       ['height_cm','身長'],
       ['weight_now_kg','現在体重'],
       ['phone','電話番号'],
@@ -68,10 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // email は任意
     ];
     // F/W/L を data から取る
-    const F = data.fights_total || 0;
-    const W = data.wins || 0;
-    const L = data.losses || 0;
-    data.record_text = `${F}戦 ${W}勝 ${L}敗`;
+    // 数値に正規化
+    const F = Math.max(0, parseInt(data.fights_total, 10) || 0);
+    const W = Math.max(0, parseInt(data.wins, 10) || 0);
+    const L = Math.max(0, parseInt(data.losses, 10) || 0);
+    // 経験年数（小数許可）
+    const Y = Math.max(0, parseFloat(data.exp_years) || 0);
+    data.exp_years = String(Y);
+    ddata.exp_years   = String(Y);
+    data.fights_total = String(Math.max(F, W + L));
+    data.wins        = String(W);
+    data.losses      = String(L);
+    // スプレッドシート用の表示文字列（1列）
+    data.record_text = `${data.fights_total}戦 ${data.wins}勝 ${data.losses}敗`;
     // テキスト系
     for (const [key,label] of needText) {
       if (!data[key] || String(data[key]).trim() === '') missing.push(label);
